@@ -2,6 +2,7 @@ package com.texas.Service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
@@ -19,14 +20,14 @@ public class CustomerOrderConsumerServiceImpl {
 	@Value("${kafka.topic.name.orders}")
 	private String kafkaTopic;
 
-	
+	@Autowired
 	private CustomerOrderService orderService;
 	
-	public  CustomerOrderConsumerServiceImpl(CustomerOrderService orderService) {
-		
-		this.orderService= orderService;
-		
-	}
+//	public  CustomerOrderConsumerServiceImpl(CustomerOrderService orderService) {
+//		
+//		this.orderService= orderService;
+//		
+//	}
 
 	
 	public void CustomerOrderServiceDataListner(JsonNode jsonNode, @Header(KafkaHeaders.RECEIVED_MESSAGE_KEY) String key, 

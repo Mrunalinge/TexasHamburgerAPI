@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.texas.dto.CustomerOrderDTO;
 import com.texas.dto.DishDTO;
@@ -15,6 +16,7 @@ import com.texas.entity.Locations;
 import com.texas.exception.CustomerOrderServiceException;
 import com.texas.repository.CustomerOrderRepository;
 
+@Service
 public class CustomerOrderServiceImpl implements CustomerOrderService {
 
 	@Autowired

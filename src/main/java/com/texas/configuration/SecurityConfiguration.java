@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -31,20 +32,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
-		http.authorizeRequests().antMatchers("/hamburgerInterface/").hasAnyRole("user").and().formLogin().loginPage("/login").
-		defaultSuccessUrl("/hamburgerInterface/menu/")
-		.failureUrl("/loginerror")
-		.permitAll();
+		http.authorizeRequests().antMatchers("/menu").hasAnyRole("user")
+		.antMatchers("/order").hasAnyRole("user")
+		.and().formLogin();
 	}
 
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
+		  return NoOpPasswordEncoder.getInstance();
+		//return new BCryptPasswordEncoder();
 	}
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 		provider.setUserDetailsService(usersServiceImpl);
+		provider.setPasswordEncoder(getPasswordEncoder());
+		
+		System.out.println(provider.getUserCache());
 		
 		return provider;
 	}

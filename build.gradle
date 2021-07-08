@@ -20,29 +20,40 @@ repositories {
 }
 
 dependencies {
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	//implementation 'org.springframework.boot:spring-boot-starter-log4j2'
     implementation 'org.postgresql:postgresql'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.4.4'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     
-    //-----------swagger------------------------------
+    //-----------swagger-------------------------------------------------------------
     implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
     implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
     
-    //----------------lombok----------------------------
+    //----------------lombok----------------------------------------------------------
+    
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	
-	//--------spring security--------------------------------
+	//--------spring security----------------------------------------------------------
 	
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.5.2'
 	 
-	   
+	//----------------kafka-----------------------------------------------------------
 	
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.5.10.RELEASE'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+       
+    //------------------mockito, junit---------------------------------------------------
+    
+    testImplementation 'org.mockito:mockito-inline:3.7.7'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.7.7'
+	
+	
 }
 
 test {

@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 @Data
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Accessors(fluent=true, chain=true)
+//@Accessors(fluent=true, chain=true)
 public class CustomerOrderDTO implements Serializable {
 
 	private long id;

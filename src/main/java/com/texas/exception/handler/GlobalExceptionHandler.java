@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.texas.exception.CustomerOrderServiceException;
 import com.texas.exception.LocationServiceExceptionHandler;
 import com.texas.exception.MenuServiceExceptionHandler;
 import com.texas.response.Response;
@@ -28,6 +29,12 @@ public class GlobalExceptionHandler {
 		log.error(exception.getMessage());
 		return buildResponse(StatusMessage.REQUEST_NOT_PROCESSED, HttpStatus.BAD_REQUEST ,exception.getMessage());
 	}
+	 
+	 public ResponseEntity<Response<?>> handleCustomerServiceException(CustomerOrderServiceException exception){
+		 log.error(exception.getMessage());
+		 
+		 return buildResponse(StatusMessage.REQUEST_NOT_PROCESSED, HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage());
+	 }
 	
 	private ResponseEntity<Response<?>> buildResponse(StatusMessage statusMessage, HttpStatus status, String errorMsg ){
 		Response responseObj = Response.builder().responseMeta(ResponseMetaData.builder().
